@@ -46,21 +46,27 @@ class ImportAchive extends Command
                 if (is_dir($folderPath)) {
                     $files = array_diff(scandir($folderPath), array('..', '.'));
 
+                    echo count($files);
+
                     if (count($files) > 0) {
                         echo "Arquivos em $folder: \n";
 
                         foreach ($files as $file) {
-                            $filePath = $folderPath . '/' . $file;
+                            // $filePath = $folderPath . '/' . $file;
 
-                            if (is_file($filePath)) {
-                                $data = Excel::toArray([], $filePath);
+                            echo $occurrencesPath . "\n";
 
-                                // $controller = new PlacaOcorrenciaController();
+                            // if (is_file($filePath)) {
+                            //     // echo $folderPath;
 
-                                // $archiveName = strtoupper($folder);
+                            //     // $data = Excel::toArray([], $filePath);
 
-                                // $controller->create($archiveName, $data);
-                            }
+                            //     // $controller = new PlacaOcorrenciaController();
+
+                            //     // $archiveName = strtoupper($folder);
+
+                            //     // $controller->create($archiveName, $data);
+                            // }
                         }
                     } else {
                         echo "Não há arquivos na pasta $folder.\n";
