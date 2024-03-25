@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\User;
+use App\Models\PlacaOcorrencia;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 
@@ -15,11 +15,19 @@ class LeilaoImport implements ToModel
      */
     public function model(array $row)
     {
-        return new User([
+        // 'arquivo',
+        // 'ocorrencia',
+        // 'placa',
+        // 'cidade',
+        // 'estado',
+        // 'data',
+
+        return new PlacaOcorrencia([
             //
-            'name'     => $row[0],
-            'email'    => $row[1],
-            'password' => Hash::make($row[2]),
+            // 'name'     => $row[0],
+            // 'email'    => $row[1],
+            // 'password' => Hash::make($row[2]),
+            // 'arquivo' => 
         ]);
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\PlacaOcorrenciaController;
+use App\Models\PlacaOcorrencia;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/import', [PlacaOcorrenciaController::class, 'index']);
+
+Route::post('/import', [PlacaOcorrenciaController::class, 'store'])->name('import');
+
+Route::get('/config', function () {
+    return view('config');
+});
+
+Route::post('/config', [PlacaOcorrenciaController::class, 'create'])->name('config');
