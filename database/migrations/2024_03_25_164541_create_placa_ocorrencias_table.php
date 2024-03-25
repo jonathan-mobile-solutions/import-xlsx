@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('placa')->comment('placa do veiculo');
             $table->string('cidade')->nullable()->comment('cidade');
             $table->string('estado')->nullable()->comment('estado');
-            $table->date('data')->nullable()->comment('data da ocorrencia');
+            $table->string('data')->nullable()->comment('data da ocorrencia');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class PlacaOcorrenciaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $occurrenceType, array $data)
+    public function create(string $archiveName, string $occurrenceType, array $data)
     {
         //
         $arrayData = $data[0];
@@ -59,6 +59,22 @@ class PlacaOcorrenciaController extends Controller
                         continue;
                     }
                 }
+
+                if (count($letters) >= 7 && count($letters) <= 8) {
+                    $isString = false;
+
+                    for ($index = 0; $index < count($letters); $index++) {
+                        # code...
+                        if (!is_numeric($letters[$index])) {
+                            $isString = true;
+                            break;
+                        }
+                    }
+
+                    if ($isString == false) {
+                        $date = $value;
+                    }
+                }
             }
 
             echo "\n";
@@ -70,14 +86,14 @@ class PlacaOcorrenciaController extends Controller
             // nome do arquivo
             // ocorrencia (split “_”) pega o indice zero da strin (nome do arquivo)
 
-            // $model = PlacaOcorrencia::firstOrCreate([
-            //     'arquivo'    => $archiveName,
-            //     'ocorrencia' => $occurrence,
-            //     'placa'      => $plate,
-            //     'cidade'     => $city,
-            //     'estado'     => $state,
-            //     'data'       => $date,
-            // ]);
+            $model = PlacaOcorrencia::firstOrCreate([
+                'arquivo'    => $archiveName,
+                'ocorrencia' => $occurrence,
+                'placa'      => $plate,
+                'cidade'     => $city,
+                'estado'     => $state,
+                'data'       => $date,
+            ]);
         }
     }
 
