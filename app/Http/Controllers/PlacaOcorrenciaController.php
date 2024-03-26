@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlacaOcorrencia;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PlacaOcorrenciaController extends Controller
@@ -72,7 +73,15 @@ class PlacaOcorrenciaController extends Controller
                     }
 
                     if ($isString == false) {
-                        $date = $value;
+                        // // $formatedDate = Carbon::createFromFormat('d/m/Y', $value);
+
+                        // $data_formatada = Carbon::createFromFormat('dmY', $value)->format('d-m-y');
+
+                        // $date = $data_formatada;
+
+                        // echo $date;
+
+                        // continue;
                     }
                 }
             }
@@ -86,14 +95,14 @@ class PlacaOcorrenciaController extends Controller
             // nome do arquivo
             // ocorrencia (split “_”) pega o indice zero da strin (nome do arquivo)
 
-            $model = PlacaOcorrencia::firstOrCreate([
-                'arquivo'    => $archiveName,
-                'ocorrencia' => $occurrence,
-                'placa'      => $plate,
-                'cidade'     => $city,
-                'estado'     => $state,
-                'data'       => $date,
-            ]);
+            // $model = PlacaOcorrencia::firstOrCreate([
+            //     'arquivo'    => $archiveName,
+            //     'ocorrencia' => $occurrence,
+            //     'placa'      => $plate,
+            //     'cidade'     => $city,
+            //     'estado'     => $state,
+            //     'data'       => $date,
+            // ]);
         }
     }
 

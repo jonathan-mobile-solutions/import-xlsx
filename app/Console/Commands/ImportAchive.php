@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\PlacaOcorrenciaController;
+use App\Imports\OccurrencePlateImport;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -54,15 +55,20 @@ class ImportAchive extends Command
                                 $filePath = $folderPath . '/' . $file;
 
                                 if (is_file($filePath)) {
-                                    $data = Excel::toArray([], $filePath);
-
-                                    $controller = new PlacaOcorrenciaController();
-
-                                    $archiveName = $file;
-
+                                    $fileName = $file;
                                     $occurrenceType = strtoupper($folder);
 
-                                    $controller->create($archiveName, $occurrenceType, $data);
+                                    Excel::import(new OccurrencePlateImport($fileName, $occurrenceType), $filePath);
+
+                                    // $data = Excel::toArray([], $filePath);
+
+                                    // $controller = new PlacaOcorrenciaController();
+
+                                    // $archiveName = $file;
+
+                                    // $occurrenceType = strtoupper($folder);
+
+                                    // $controller->create($archiveName, $occurrenceType, $data);
                                 }
                             } catch (\Exception $e) {
                                 //throw $th;
